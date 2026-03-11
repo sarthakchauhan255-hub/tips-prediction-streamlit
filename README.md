@@ -3,6 +3,8 @@
 A **Machine Learning web application** that predicts the **tip amount** based on the total restaurant bill using a **Linear Regression model**.
 
 The application is built using **Python, Scikit-Learn, and Streamlit**, providing an interactive user interface where users can input bill information and instantly receive a predicted tip.
+## 🌐 Live Demo
+https://tips-prediction-app-mgghwbanbqm69omeabraju.streamlit.app
 
 ---
 
@@ -14,6 +16,12 @@ This project builds a **Linear Regression model** to learn the relationship betw
 The model is trained using the **Seaborn Tips dataset**, and the trained model is deployed using **Streamlit** to create an interactive web application.
 
 ---
+## How It Works
+
+1. User inputs restaurant bill details
+2. Data is passed to a trained Linear Regression model
+3. Model predicts expected tip amount
+4. Streamlit UI displays prediction and analytics
 
 ## 🚀 Features
 
@@ -118,6 +126,11 @@ https://tips-prediction-app-mgghwbanbqm69omeabraju.streamlit.app
 ```
 
 ---
+## Model Performance
+
+MAE: 0.73  
+RMSE: 1.02  
+R² Score: 0.56
 
 ## 📊 Example Prediction
 
@@ -134,8 +147,6 @@ Predicted Tip: $4.02
 ```
 
 ---
-## 🌐 Live Demo
-https://tips-prediction-app-mgghwbanbqm69omeabraju.streamlit.app
 
 
 ## 👨‍💻 Author
