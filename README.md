@@ -114,7 +114,7 @@ http://localhost:8501
 After deployment on **Streamlit Cloud**, the app will be available at:
 
 ```
-https://Tips-prediction-app.streamlit.app
+[https://tips-prediction-app-mgghwbanbqm69omeabraju.streamlit.app]
 ```
 
 ---
@@ -134,8 +134,6 @@ Predicted Tip: $4.02
 ```
 
 ---
-## Live Demo
-https://https://tips-prediction-app-mgghwbanbqm69omeabraju.streamlit.app
 
 ## 👨‍💻 Author
 
