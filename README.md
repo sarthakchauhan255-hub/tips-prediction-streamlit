@@ -134,6 +134,8 @@ Predicted Tip: $4.02
 ```
 
 ---
+## Live Demo
+https://https://tips-prediction-app-mgghwbanbqm69omeabraju.streamlit.app
 
 ## 👨‍💻 Author
 
