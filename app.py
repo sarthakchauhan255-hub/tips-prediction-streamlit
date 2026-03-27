@@ -6,7 +6,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
 import time
-import streamlit.components.v1 as components
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
@@ -56,6 +55,7 @@ h1 {
 }
 h2, h3 { font-family: 'Syne', sans-serif !important; color: #e2e8f0 !important; font-weight: 700 !important; }
 
+/* ── Selectbox styling ── */
 .stSelectbox label {
     font-size: 11px !important; font-weight: 700 !important;
     letter-spacing: 0.12em !important; text-transform: uppercase !important;
@@ -75,8 +75,7 @@ h2, h3 { font-family: 'Syne', sans-serif !important; color: #e2e8f0 !important; 
 }
 .stSelectbox svg { color: #7c3aed !important; }
 
-/* ── Dropdown portal — Streamlit renders this appended to <body> ── */
-/* Target every layer of the portal stack */
+/* ── Dropdown portal styling ── */
 ul[data-baseweb="menu"],
 div[data-baseweb="menu"],
 [data-baseweb="popover"],
@@ -91,8 +90,6 @@ div[role="listbox"] {
     box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(124,58,237,0.2) !important;
     overflow: hidden !important;
 }
-
-/* Every list item / option */
 ul[data-baseweb="menu"] li,
 [data-baseweb="menu"] li,
 [role="listbox"] li,
@@ -108,8 +105,6 @@ ul[data-baseweb="menu"] li,
     margin: 2px 6px !important;
     transition: background 0.15s, color 0.15s !important;
 }
-
-/* Hover + selected state */
 ul[data-baseweb="menu"] li:hover,
 [data-baseweb="menu"] li:hover,
 [role="option"]:hover,
@@ -119,24 +114,60 @@ ul[data-baseweb="menu"] li:hover,
     background-color: rgba(124,58,237,0.28) !important;
     color: #c4b5fd !important;
 }
-
-/* The inner highlight div Streamlit puts inside selected items */
 [role="option"][aria-selected="true"] > div,
 [data-baseweb="menu"] [aria-selected="true"] > div {
     background: transparent !important;
     color: #c4b5fd !important;
 }
-
-/* Catch-all: any div/ul inside the popover portal */
-[data-baseweb="popover"] * {
-    background-color: transparent !important;
-}
+[data-baseweb="popover"] * { background-color: transparent !important; }
 [data-baseweb="popover"] > div,
-[data-baseweb="popover"] > div > div {
-    background-color: #0d0f1f !important;
+[data-baseweb="popover"] > div > div { background-color: #0d0f1f !important; }
+
+/* ── Number Input styling ── */
+.stNumberInput label {
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.12em !important; text-transform: uppercase !important;
+    color: #7c3aed !important; margin-bottom: 6px !important;
 }
+.stNumberInput > div {
+    background: rgba(124,58,237,0.08) !important;
+    border: 1px solid rgba(124,58,237,0.28) !important;
+    border-radius: 14px !important;
+    transition: all 0.25s ease !important;
+    overflow: hidden !important;
+}
+.stNumberInput > div:focus-within,
+.stNumberInput > div:hover {
+    border-color: #7c3aed !important;
+    background: rgba(124,58,237,0.16) !important;
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.2), 0 0 20px rgba(124,58,237,0.15) !important;
+}
+.stNumberInput input {
+    background: transparent !important;
+    color: #f1f5f9 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    border: none !important;
+    min-height: 52px !important;
+    caret-color: #a78bfa !important;
+}
+.stNumberInput input:focus { outline: none !important; box-shadow: none !important; }
+/* +/- stepper buttons */
+.stNumberInput button {
+    background: rgba(124,58,237,0.18) !important;
+    border: none !important;
+    border-left: 1px solid rgba(124,58,237,0.2) !important;
+    color: #a78bfa !important;
+    transition: background 0.15s, color 0.15s !important;
+}
+.stNumberInput button:hover {
+    background: rgba(124,58,237,0.4) !important;
+    color: #fff !important;
+}
+.stNumberInput button svg { fill: #a78bfa !important; }
 
-
+/* ── Button ── */
 .stButton > button {
     background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #06b6d4 100%) !important;
     color: white !important; border: none !important; border-radius: 16px !important;
@@ -147,6 +178,7 @@ ul[data-baseweb="menu"] li:hover,
 }
 .stButton > button:hover { transform: translateY(-2px) scale(1.01) !important; box-shadow: 0 16px 50px rgba(124,58,237,0.7) !important; }
 
+/* ── Metrics ── */
 [data-testid="stMetric"] {
     background: rgba(255,255,255,0.025) !important; border: 1px solid rgba(255,255,255,0.06) !important;
     border-radius: 18px !important; padding: 20px 24px !important;
@@ -173,14 +205,12 @@ hr { border: none !important; border-top: 1px solid rgba(255,255,255,0.05) !impo
 .tip-bar-track { background: rgba(255,255,255,0.06); border-radius: 99px; height: 6px; margin-top: 12px; overflow: hidden; }
 .tip-bar-fill { height: 6px; border-radius: 99px; background: linear-gradient(90deg, #7c3aed, #06b6d4); }
 
+/* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] { background: rgba(255,255,255,0.03) !important; border-radius: 14px !important; padding: 4px !important; gap: 4px !important; border: 1px solid rgba(255,255,255,0.06) !important; }
 .stTabs [data-baseweb="tab"] { border-radius: 10px !important; color: #64748b !important; font-size: 13px !important; font-weight: 600 !important; font-family: 'DM Sans', sans-serif !important; padding: 8px 20px !important; transition: all 0.2s ease !important; }
 .stTabs [aria-selected="true"] { background: rgba(124,58,237,0.25) !important; color: #a78bfa !important; box-shadow: 0 0 16px rgba(124,58,237,0.2) !important; }
 .stTabs [data-baseweb="tab-border"] { display: none !important; }
 [data-testid="column"] { padding: 0 10px !important; }
-
-/* Hide native number inputs — replaced by HTML component above */
-div[data-testid="stNumberInput"] { visibility: hidden !important; height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
 
 iframe { border: none !important; }
 </style>
@@ -206,97 +236,12 @@ left, right = st.columns([1, 1.6], gap="large")
 with left:
     st.markdown('<p class="section-label">⚡ Input Parameters</p>', unsafe_allow_html=True)
 
-    # ── Fully custom HTML inputs (guaranteed dark, no Streamlit BaseWeb) ──
-    components.html("""
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html, body { background: transparent; font-family: 'DM Sans', sans-serif; overflow: hidden; }
-
-      .row { display: flex; gap: 14px; width: 100%; padding: 2px 0; }
-      .field { flex: 1; display: flex; flex-direction: column; gap: 7px; }
-
-      label {
-        font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-        text-transform: uppercase; color: #7c3aed;
-      }
-
-      .wrap {
-        display: flex; align-items: center;
-        background: rgba(124,58,237,0.08);
-        border: 1px solid rgba(124,58,237,0.28);
-        border-radius: 14px; height: 52px; overflow: hidden;
-        transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-      }
-      .wrap:focus-within {
-        border-color: #7c3aed;
-        background: rgba(124,58,237,0.16);
-        box-shadow: 0 0 0 3px rgba(124,58,237,0.22), 0 0 22px rgba(124,58,237,0.18);
-      }
-
-      input[type=number] {
-        flex: 1; background: transparent; border: none; outline: none;
-        color: #f1f5f9; font-size: 15px; font-family: 'DM Sans', sans-serif;
-        font-weight: 500; padding: 0 10px 0 14px; height: 100%;
-        caret-color: #a78bfa;
-        -moz-appearance: textfield;
-      }
-      input[type=number]::-webkit-outer-spin-button,
-      input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-      input::placeholder { color: #4a5568; font-style: italic; font-size: 13px; }
-
-      .btn {
-        background: rgba(124,58,237,0.18); border: none;
-        border-left: 1px solid rgba(124,58,237,0.2);
-        color: #a78bfa; width: 36px; height: 52px;
-        font-size: 20px; cursor: pointer; line-height: 1;
-        display: flex; align-items: center; justify-content: center;
-        transition: background 0.15s, color 0.15s; flex-shrink: 0;
-      }
-      .btn:hover { background: rgba(124,58,237,0.4); color: #fff; }
-      .btn:active { background: rgba(124,58,237,0.6); }
-    </style>
-    </head>
-    <body>
-    <div class="row">
-      <div class="field">
-        <label>Total Bill ($)</label>
-        <div class="wrap">
-          <input type="number" id="bill" value="20.00" min="0" max="500" step="0.5" placeholder="e.g. 24.50" />
-          <button class="btn" onclick="adj('bill',-0.5)">−</button>
-          <button class="btn" onclick="adj('bill',+0.5)">+</button>
-        </div>
-      </div>
-      <div class="field">
-        <label>Party Size</label>
-        <div class="wrap">
-          <input type="number" id="size" value="2" min="1" max="10" step="1" placeholder="1-10" />
-          <button class="btn" onclick="adj('size',-1)">−</button>
-          <button class="btn" onclick="adj('size',+1)">+</button>
-        </div>
-      </div>
-    </div>
-    <script>
-      function adj(id, d) {
-        const el = document.getElementById(id);
-        const v  = parseFloat(el.value)||0;
-        const mn = parseFloat(el.min), mx = parseFloat(el.max);
-        el.value = id==='size' ? Math.round(Math.min(mx,Math.max(mn,v+d))) : Math.min(mx,Math.max(mn,+(v+d).toFixed(2)));
-      }
-    </script>
-    </body>
-    </html>
-    """, height=95, scrolling=False)
-
-    # Hidden native inputs (invisible) — used only to capture values for Python
+    # ── FIX: Native Streamlit number inputs (actually wired to Python) ──
     c1, c2 = st.columns(2)
     with c1:
-        total_bill = st.number_input("bill", min_value=0.0, max_value=500.0, value=20.0, step=0.5, label_visibility="collapsed")
+        total_bill = st.number_input("Total Bill ($)", min_value=0.0, max_value=500.0, value=20.0, step=0.5)
     with c2:
-        size = st.number_input("size", min_value=1, max_value=10, value=2, step=1, label_visibility="collapsed")
+        size = st.number_input("Party Size", min_value=1, max_value=10, value=2, step=1)
 
     st.markdown('<div style="height:6px"></div>', unsafe_allow_html=True)
 
@@ -325,21 +270,31 @@ with left:
 
 # ── RIGHT PANEL ──
 with right:
+    # ── FIX: Build input_data from the native inputs that Python actually reads ──
     input_data = pd.DataFrame({
-        "total_bill": [total_bill], "size": [size],
-        "sex": [sex], "smoker": [smoker], "day": [day], "time": [time_meal]
+        "total_bill": [total_bill],
+        "size":       [size],
+        "sex":        [sex],
+        "smoker":     [smoker],
+        "day":        [day],
+        "time":       [time_meal]   # column name matches model training ("time")
     })
 
     if predict_btn:
         with st.spinner(""):
             time.sleep(0.8)
+
         if model_loaded:
             prediction = model.predict(input_data)[0]
         else:
-            base = 0.92 + total_bill * 0.105 + size * 0.18
-            if smoker == "Yes":      base *= 0.97
-            if time_meal == "Lunch": base *= 0.88
-            prediction = max(0.5, round(base, 2))
+            # Fallback: rough linear approximation matching training data patterns
+            # total_bill and size are the two strongest predictors
+            prediction = round(0.92 + total_bill * 0.105 + size * 0.18, 2)
+            if smoker == "Yes":
+                prediction *= 0.97
+            if time_meal == "Lunch":
+                prediction *= 0.88
+            prediction = max(0.5, prediction)
 
         pct   = (prediction / total_bill * 100) if total_bill > 0 else 0
         bar_w = min(int(pct * 3), 100)
@@ -405,69 +360,6 @@ with right:
         st.plotly_chart(fig3, use_container_width=True)
 
 st.markdown("---")
-
-# Inject dropdown styles directly into parent document <head> via iframe JS
-# This is the only reliable way to style Streamlit's body-portal dropdowns
-components.html("""
-<script>
-(function() {
-  var css = `
-    ul[data-baseweb="menu"],
-    div[data-baseweb="menu"],
-    [data-baseweb="popover"],
-    [data-baseweb="popover"] > div,
-    [data-baseweb="popover"] > div > div,
-    [role="listbox"] {
-        background: #0d0f1f !important;
-        background-color: #0d0f1f !important;
-        border: 1px solid rgba(124,58,237,0.35) !important;
-        border-radius: 14px !important;
-        box-shadow: 0 24px 64px rgba(0,0,0,0.95), 0 0 30px rgba(124,58,237,0.2) !important;
-        overflow: hidden !important;
-    }
-    [role="option"],
-    [data-baseweb="menu"] li,
-    ul[data-baseweb="menu"] li {
-        background: transparent !important;
-        background-color: transparent !important;
-        color: #cbd5e1 !important;
-        font-family: 'DM Sans', sans-serif !important;
-        font-size: 14px !important;
-        border-radius: 8px !important;
-        margin: 2px 6px !important;
-        padding: 8px 10px !important;
-        cursor: pointer !important;
-    }
-    [role="option"]:hover,
-    [data-baseweb="menu"] li:hover {
-        background: rgba(124,58,237,0.22) !important;
-        background-color: rgba(124,58,237,0.22) !important;
-        color: #c4b5fd !important;
-    }
-    [role="option"][aria-selected="true"],
-    [data-baseweb="menu"] [aria-selected="true"] {
-        background: rgba(124,58,237,0.32) !important;
-        background-color: rgba(124,58,237,0.32) !important;
-        color: #a78bfa !important;
-    }
-    [role="option"][aria-selected="true"] > div,
-    [data-baseweb="menu"] [aria-selected="true"] > div,
-    [data-baseweb="menu"] [aria-selected="true"] span {
-        background: transparent !important;
-        background-color: transparent !important;
-        color: #a78bfa !important;
-    }
-  `;
-  var target = window.parent ? window.parent.document : document;
-  var old = target.getElementById('tipai-dropdown-fix');
-  if (old) old.remove();
-  var style = target.createElement('style');
-  style.id = 'tipai-dropdown-fix';
-  style.textContent = css;
-  target.head.appendChild(style);
-})();
-</script>
-""", height=0, scrolling=False)
 
 st.markdown("""
 <div style="text-align:center;color:#334155;font-size:12px;padding-bottom:10px;">
